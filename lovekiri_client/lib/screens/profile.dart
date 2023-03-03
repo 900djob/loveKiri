@@ -8,7 +8,7 @@ import 'package:lovekiri_client/screens/login.dart';
 import '../widgets/bottom_navbar.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({super.key}); 
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
