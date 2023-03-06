@@ -11,7 +11,6 @@ router.get("/auth", auth, (req, res) => {
     name: req.user.name,
     email: req.user.email,
     image: req.user.image,
-    isAuth: true,
   });
 });
 
@@ -25,6 +24,7 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/validate", (req, res) => {
+  console.log(req.body);
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({

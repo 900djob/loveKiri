@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
-import 'package:lovekiri_client/constant/mongodb.dart';
 import 'package:lovekiri_client/screens/login.dart';
 
 void main() async {

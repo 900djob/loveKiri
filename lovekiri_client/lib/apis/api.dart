@@ -30,7 +30,7 @@ class Api {
   static const bool _logVerbose = kDebugMode && false;
   static const bool _logResponseFail = kDebugMode && true;
 
-  static String get apiServer => 'http://localhost:4000/';
+  static String get apiServer => 'http://localhost:4000';
   static Client client = Client();
 
   static Map<String, String> headers = {
