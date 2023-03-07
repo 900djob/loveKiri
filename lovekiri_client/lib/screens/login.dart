@@ -19,49 +19,31 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  Future<bool> _socialLogin(LoginInfo info) async {
-    final response = await ApiUser.postUser(
-      type: info.loginType,
-      name: info.name,
-      email: info.email,
-      ssoId: info.ssoId,
-    );
-    if (response.isSuccess) {
-      return true;
+  Future<void> socialLogin(String type) async {
+    LoginInfo? userData;
+    if (type == 'google') {
+      userData = await UtilLogin.signInWithGoogle();
     }
-    return false;
-  }
+    if (type == 'kakao') {
+      userData = await UtilLogin.signInWithKakao();
+    }
 
-  Future<void> googleLogin() async {
-    final userData = await UtilLogin.signInWithGoogle();
-    final user = userData.user;
-
-    if (user != null) {
-      final validationResult = await ApiUser.postUserValidation(
-        email: user.email!,
+    if (userData != null) {
+      final response = await ApiUser.postUser(
+        type: userData.loginType,
+        name: userData.name,
+        email: userData.email,
+        ssoId: userData.ssoId,
       );
-      if (validationResult.isSuccess) {
-        Get.to(
-          const HomeScreen(),
-          transition: Transition.noTransition,
-        );
-        return;
-      }
-
-      final registerResult = await ApiUser.postUser(
-        type: 'google',
-        name: user.displayName!,
-        email: user.email!,
-        ssoId: user.uid,
-      );
-      if (registerResult.isSuccess) {
-        Get.to(
+      if (response.isSuccess) {
+        Get.offAll(
           const HomeScreen(),
           transition: Transition.noTransition,
         );
         return;
       }
     }
+    return;
   }
 
   @override
@@ -86,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   GestureDetector(
                     onTap: () async {
-                      googleLogin();
+                      socialLogin('google');
                     },
                     child: Container(
                       padding: const EdgeInsets.all(18),
@@ -106,13 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(width: 32),
                   GestureDetector(
                     onTap: () async {
-                      final kakaoUser = await UtilLogin.loginKakao();
-                      if (kakaoUser != null) {
-                        final isLogin = await _socialLogin(kakaoUser);
-                        if (isLogin) {
-                          Get.to(const HomeScreen());
-                        }
-                      }
+                      socialLogin('kakao');
                     },
                     child: Container(
                       padding: const EdgeInsets.all(18),

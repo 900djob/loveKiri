@@ -182,9 +182,9 @@ class Api {
     }
     if (ret.isSuccess && _logResponse) {
       final body = ret.body;
-      debugPrint('[BZ_API][$statusCode] $api ${ret.failedBody ?? ''}${ret.failedBody != null ? ' ' : ''}${UtilFormat.bzRuntimeType(body)} ${_logVerbose || isVerboseLog ? json.encode(body) : ""}');
+      debugPrint('[API][$statusCode] $api ${ret.failedBody ?? ''}${ret.failedBody != null ? ' ' : ''}${UtilFormat.bzRuntimeType(body)} ${_logVerbose || isVerboseLog ? json.encode(body) : ""}');
     } else if (!ret.isSuccess && _logResponseFail) {
-      final failedMessage = '[BZ_API][$statusCode] $api ${ret.failedBody}';
+      final failedMessage = '[API][$statusCode] $api ${ret.failedBody}';
       debugPrint(failedMessage);
     }
     return ret;
@@ -192,7 +192,7 @@ class Api {
 
   static void _printRequest(String method, String api, [String? body]) {
     if (_logRequest) {
-      debugPrint('[BZ_API][$method] $api ${_logHeader ? "[HEADER] ${json.encode(Api.headers)}" : ""}${body != null ? ((_logHeader ? ", [BODY] " : "") + body) : ""}');
+      debugPrint('[API][$method] $api ${_logHeader ? "[HEADER] ${json.encode(Api.headers)}" : ""}${body != null ? ((_logHeader ? ", [BODY] " : "") + body) : ""}');
     }
   }
 }

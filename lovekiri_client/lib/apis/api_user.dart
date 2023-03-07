@@ -22,20 +22,9 @@ class ApiUser extends Api {
     if (image != null) params["image"] = image;
 
     return Api.post(
-      api: '/users/register/',
+      api: '/users/auth',
       parser: (user) => SUser.fromJson(user),
       params: params,
-      isVerboseLog: isVerboseLog,
-    );
-  }
-
-  static Future<SResponse<bool>> postUserValidation({
-    required String email,
-    bool isVerboseLog = false,
-  }) {
-    return Api.post(
-      api: '/users/validate/',
-      parser: (_) => true,
       isVerboseLog: isVerboseLog,
     );
   }

@@ -14,51 +14,40 @@ class LoginInfo {
 }
 
 class UtilLogin {
-  static Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
-
-  static Future<LoginInfo?> googleLogin() async {
+  static Future<LoginInfo?> signInWithGoogle() async {
     try {
-      GoogleSignIn googleSignIn = GoogleSignIn(
-        scopes: [
-          'email',
-          'https://www.googleapis.com/auth/contacts.readonly',
-        ],
-      );
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      final googleAccount = await googleSignIn.signIn();
-      if (googleAccount != null) {
-        debugPrint(googleAccount.email);
-        debugPrint(googleAccount.id);
-      }
-      return LoginInfo('google', googleAccount!.displayName!, googleAccount.email, googleAccount.id, "");
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      final userData = await FirebaseAuth.instance.signInWithCredential(credential);
+      final user = userData.user!;
+      return LoginInfo(
+        'google',
+        user.displayName!,
+        user.email!,
+        user.uid,
+        user.photoURL,
+      );
     } on PlatformException catch (e) {
       debugPrint(e.toString());
-      //throw Exception('GoogleAuthException : $e');
     } catch (e) {
       debugPrint(e.toString());
     }
     return null;
   }
 
-  static Future<LoginInfo?> loginKakao() async {
+  static Future<LoginInfo?> signInWithKakao() async {
     try {
       final installed = await isKakaoTalkInstalled();
       installed ? await UserApi.instance.loginWithKakaoTalk() : await UserApi.instance.loginWithKakaoAccount();
-
       final me = await UserApi.instance.me();
       return LoginInfo(
-        '카카오',
+        'kakao',
         me.properties!.values.elementAt(0),
         me.kakaoAccount!.email!,
         '${me.id}',
