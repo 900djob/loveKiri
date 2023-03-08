@@ -83,7 +83,7 @@ class TravelogTile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              '위치 : ',
+                              tr('location.위치'),
                               style: const TextStyle(
                                 fontSize: 14,
                               ),
