@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lovekiri_client/apis/api_user.dart';
 import 'package:lovekiri_client/screens/home.dart';
+import 'package:lovekiri_client/state/app_state.dart';
 import 'package:lovekiri_client/utils/util_login.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,10 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+
+  final appState = Get.find<AppState>();
 
   Future<void> socialLogin(String type) async {
     LoginInfo? userData;
@@ -36,8 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
         ssoId: userData.ssoId,
       );
       if (response.isSuccess) {
+        appState.prefs.setBool('isRegistered', true);
+        appState.prefs.setString('accessToken', userData.ssoId);
         Get.offAll(
-          const HomeScreen(),
+          () => const HomeScreen(),
           transition: Transition.noTransition,
         );
         return;
@@ -48,6 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isRegistered = appState.prefs.getBool('isRegistered') == true;
+    final hasAccessToken = appState.prefs.getString('accessToken') != null;
+    if (isRegistered && hasAccessToken) {
+      appState.status = AuthStatus.loggedIn;
+      return const HomeScreen();
+    }
     return Scaffold(
       body: SafeArea(
         child: Center(

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:lovekiri_client/screens/login.dart';
+import 'package:lovekiri_client/state/app_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,8 @@ void main() async {
   await Firebase.initializeApp();
   //kakao login
   KakaoSdk.init(nativeAppKey: '11e5ffc5e93d8bbb4f3641ae066c865b');
+
+  Get.put(AppState());
 
   runApp(
     EasyLocalization(
@@ -43,15 +46,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      title: 'lovekiri',
-      theme: ThemeData(
-        textTheme: GoogleFonts.breeSerifTextTheme(),
-        primarySwatch: Colors.blue,
-      ),
-      home: const LoginScreen()
-    );
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        title: 'lovekiri',
+        theme: ThemeData(
+          textTheme: GoogleFonts.breeSerifTextTheme(),
+          primarySwatch: Colors.blue,
+        ),
+        home: LoginScreen());
   }
 }

@@ -4,17 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lovekiri_client/screens/login.dart';
+import 'package:lovekiri_client/state/app_state.dart';
 
 import '../widgets/bottom_navbar.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key}); 
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final appStatus = Get.find<AppState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Container(
                 color: Colors.transparent,
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                child: Text('logout'),
+                child: const Text('logout'),
               ),
             ),
           ],
@@ -82,8 +85,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
+    appStatus.prefs.remove('accessToken');
+    appStatus.status = AuthStatus.loggedOut;
     Get.to(
-      const LoginScreen(),
+      () => const LoginScreen(),
       transition: Transition.noTransition,
     );
   }
