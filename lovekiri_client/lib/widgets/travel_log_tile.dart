@@ -5,74 +5,120 @@ class TravelogTile extends StatelessWidget {
   const TravelogTile({
     required this.date,
     required this.title,
-    required this.comment,
+    required this.locationName,
     required this.type,
+    required this.rate,
     Key? key,
   }) : super(key: key);
 
   final DateTime date;
   final String title;
-  final String comment;
+  final String locationName;
   final String type;
+  final int rate;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const AlwaysScrollableScrollPhysics(),
+    return GestureDetector(
+      onTap: () {},
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              DateFormat.yMEd().format(date),
-              style: const TextStyle(
-                fontSize: 16,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            color: const Color(0xffffffff),
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                spreadRadius: 2,
+                blurRadius: 24,
               ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
-              decoration: BoxDecoration(
-                color: const Color(0xffffffff),
-                borderRadius: BorderRadius.circular(18),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    spreadRadius: 2,
-                    blurRadius: 24,
-                  ),
-                ],
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.red),
+                child: const Icon(
+                  Icons.bookmark_border_outlined,
+                  color: Colors.white,
+                  size: 20,
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontSize: 16,
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(3),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.red),
-                        child: const Icon(
-                          Icons.bookmark_border_outlined,
-                          color: Colors.white,
-                          size: 16,
+                        Text(
+                          DateFormat.yMEd().format(date),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Color(0xff888888),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                ],
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '위치 : ',
+                              style: const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              locationName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 90,
+                          height: 20,
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: rate,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (ctx, idx) => const Icon(
+                              Icons.star,
+                              size: 18,
+                              color: Colors.amber,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

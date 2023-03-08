@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lovekiri_client/screens/profile.dart';
 import 'package:lovekiri_client/widgets/bottom_navbar.dart';
+import 'package:lovekiri_client/widgets/travel_log_tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff9f9f9),
       body: SafeArea(
         top: false,
         bottom: false,
@@ -25,12 +27,22 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             _mapHeader(),
             const SizedBox(height: 32),
-            // TravelogTile(
-            //   date: DateTime.now(),
-            //   title: '중문 DT 스타벅스',
-            //   comment: '뷰가 좋음',
-            //   type: '카페',
-            // ),
+            SingleChildScrollView(
+              primary: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                itemCount: 3,
+                itemBuilder: (context, index) => TravelogTile(
+                  date: DateTime.now(),
+                  title: '중문 DT 스타벅스',
+                  locationName: '서귀포시 중문로',
+                  type: '카페',
+                  rate: 5,
+                ),
+              ),
+            ),
           ],
         ),
       ),

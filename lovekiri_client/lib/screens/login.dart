@@ -15,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final appState = Get.find<AppState>();
 
   Future<void> socialLogin(String type) async {
@@ -56,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return const HomeScreen();
     }
     return Scaffold(
+      backgroundColor: const Color(0xfff9f9f9),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 32),
+                  const SizedBox(width: 38),
                   GestureDetector(
                     onTap: () async {
                       socialLogin('kakao');
