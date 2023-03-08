@@ -79,24 +79,13 @@ class TravelogTile extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              tr('location.위치'),
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              locationName,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
+                        Text(
+                          locationName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
                         ),
                         SizedBox(
                           width: 90,

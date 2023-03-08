@@ -27,20 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             _mapHeader(),
             const SizedBox(height: 32),
-            SingleChildScrollView(
+            ListView.builder(
               primary: true,
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: ListView.builder(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                itemCount: 3,
-                itemBuilder: (context, index) => TravelogTile(
-                  date: DateTime.now(),
-                  title: '중문 DT 스타벅스',
-                  locationName: '서귀포시 중문로',
-                  type: '카페',
-                  rate: 5,
-                ),
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              itemCount: 3,
+              itemBuilder: (context, index) => TravelogTile(
+                date: DateTime.now(),
+                title: '중문 DT 스타벅스',
+                locationName: '서귀포시 중문로',
+                type: '카페',
+                rate: 5,
               ),
             ),
           ],
