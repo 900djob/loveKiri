@@ -42,9 +42,9 @@ class TravelogTile extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(3),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.red),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: Colors.brown),
                 child: const Icon(
-                  Icons.bookmark_border_outlined,
+                  Icons.coffee_outlined,
                   color: Colors.white,
                   size: 20,
                 ),
