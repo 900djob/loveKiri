@@ -7,7 +7,7 @@ class SUser {
   SUser();
 
   @JsonKey(required: true, disallowNullValue: true)
-  late int id;
+  late int userId;
 
   @JsonKey(name: 'nickname', required: true, disallowNullValue: true)
   late String name;
