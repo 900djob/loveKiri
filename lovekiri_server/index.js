@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+const { User } = require("./model/User");
+const { Travelog } = require("./model/Travelog");
+
+
 //init
 const app = express();
 const port = 4000;
@@ -18,9 +22,13 @@ app.use(cors());
 
 mongoose.Promise = global.Promise;
 mongoose.set('strictQuery', true);
-mongoose
+const db = mongoose
   .connect(DB)
-  .then(() => console.log("MongoDB connected"))
+  .then(function () {
+    console.log("MongoDB connected")
+    User.collection.createIndex({ userId: 1 }, {name: "userId"})
+    Travelog.collection.createIndex({ logId: 1 }, {name: "logId"})
+  })
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
@@ -28,6 +36,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", require("./routes/users"));
+// app.use("/travelogs", require("./routes/travelogs"));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
