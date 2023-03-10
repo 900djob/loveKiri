@@ -9,19 +9,19 @@ part of 's_user.dart';
 SUser _$SUserFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
-    requiredKeys: const ['user_id', 'nickname', 'email'],
-    disallowNullValues: const ['user_id', 'nickname', 'email'],
+    requiredKeys: const ['user_id', 'name', 'email'],
+    disallowNullValues: const ['user_id', 'name', 'email'],
   );
   return SUser()
+    ..loginType = json['login_type'] as String?
     ..userId = json['user_id'] as int
-    ..name = json['nickname'] as String
-    ..email = json['email'] as String
-    ..loginType = json['login_type'] as String?;
+    ..name = json['name'] as String
+    ..email = json['email'] as String;
 }
 
 Map<String, dynamic> _$SUserToJson(SUser instance) => <String, dynamic>{
-      'user_id': instance.userId,
-      'nickname': instance.name,
-      'email': instance.email,
       'login_type': instance.loginType,
+      'user_id': instance.userId,
+      'name': instance.name,
+      'email': instance.email,
     };
