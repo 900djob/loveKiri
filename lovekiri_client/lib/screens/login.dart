@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lovekiri_client/apis/api_user.dart';
+import 'package:lovekiri_client/models/s_user.dart';
 import 'package:lovekiri_client/screens/home.dart';
 import 'package:lovekiri_client/state/app_state.dart';
 import 'package:lovekiri_client/utils/util_login.dart';
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: userData.email,
         ssoId: userData.ssoId,
       );
-      if (response.isSuccess) {
+      if (response is SUser) {
         appState.prefs.setBool('isRegistered', true);
         appState.prefs.setString('accessToken', userData.ssoId);
         Get.offAll(

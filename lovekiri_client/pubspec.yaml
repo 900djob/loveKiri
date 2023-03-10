@@ -43,8 +43,9 @@ dependencies:
   google_sign_in: ^5.4.4
   firebase_auth: ^4.2.9
   firebase_core: ^2.7.0
-  kakao_flutter_sdk: ^1.4.0
+  kakao_flutter_sdk: ^1.4.2
   shared_preferences: ^2.0.18
+  dio: ^4.0.6
 
 
 dev_dependencies:

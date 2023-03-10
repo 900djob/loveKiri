@@ -6,10 +6,8 @@ part 's_user.g.dart';
 class SUser {
   SUser();
 
-  String? loginType;
-
   @JsonKey(required: true, disallowNullValue: true)
-  late int userId;
+  late String loginType;
 
   @JsonKey(required: true, disallowNullValue: true)
   late String name;

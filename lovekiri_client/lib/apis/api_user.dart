@@ -1,32 +1,34 @@
-import 'package:lovekiri_client/apis/api.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:lovekiri_client/models/s_user.dart';
 
-class ApiUser extends Api {
-  static Future<SResponse<SUser>> postUser({
+class ApiUser {
+  static final dio = Dio();
+  static String apiServer = 'http://localhost:4000';
+
+  static postUser({
     required String loginType,
     required String name,
     required String email,
     required String ssoId,
-    String? lastName,
-    String? firstName,
     String? image,
-    bool isVerboseLog = false,
-  }) {
+  }) async {
     Map<String, dynamic> params = {};
-    params["loginType"] = loginType;
+    params["login_type"] = loginType;
     params["name"] = name;
     params["email"] = email;
-    params["ssoId"] = ssoId;
-    if (lastName != null) params["lastName"] = lastName;
-    if (firstName != null) params["firstName"] = firstName;
+    params["sso_id"] = ssoId;
     if (image != null) params["image"] = image;
-
-    return Api.post(
-      api: '/users/auth',
-      parser: (user) => SUser.fromJson(user),
-      params: params,
-      isVerboseLog: isVerboseLog,
-    );
+    try {
+      Response response = await dio.post(
+        '$apiServer/users/auth',
+        data: params,
+      );
+      if (response.statusCode == 200) {
+        return SUser.fromJson(response.data['user']);
+      }
+    } catch (e) {
+      debugPrint('err: $e');
+    }
   }
-
 }
