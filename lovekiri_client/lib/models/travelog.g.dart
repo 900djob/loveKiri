@@ -10,7 +10,6 @@ Travelog _$TravelogFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const [
-      'id',
       'location_name',
       'adress',
       'lat',
@@ -19,7 +18,6 @@ Travelog _$TravelogFromJson(Map<String, dynamic> json) {
       'rate'
     ],
     disallowNullValues: const [
-      'id',
       'location_name',
       'adress',
       'lat',
@@ -29,7 +27,6 @@ Travelog _$TravelogFromJson(Map<String, dynamic> json) {
     ],
   );
   return Travelog()
-    ..id = json['id'] as int
     ..locationName = json['location_name'] as String
     ..adress = json['adress'] as String
     ..lat = (json['lat'] as num).toDouble()
@@ -40,7 +37,6 @@ Travelog _$TravelogFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$TravelogToJson(Travelog instance) => <String, dynamic>{
-      'id': instance.id,
       'location_name': instance.locationName,
       'adress': instance.adress,
       'lat': instance.lat,

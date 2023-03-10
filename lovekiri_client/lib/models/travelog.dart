@@ -7,9 +7,6 @@ class Travelog {
   Travelog();
 
   @JsonKey(required: true, disallowNullValue: true)
-  late int id;
-
-  @JsonKey(required: true, disallowNullValue: true)
   late String locationName;
 
   @JsonKey(required: true, disallowNullValue: true)

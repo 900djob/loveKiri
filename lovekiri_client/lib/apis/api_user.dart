@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:lovekiri_client/constant.dart';
 import 'package:lovekiri_client/models/s_user.dart';
 
 class ApiUser {
   static final dio = Dio();
-  static String apiServer = 'http://localhost:4000';
 
   static postUser({
     required String loginType,
