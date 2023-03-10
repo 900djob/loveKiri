@@ -19,6 +19,8 @@ class _MapScreenState extends State<MapScreen> {
   GoogleMapController? mapController;
   final LatLng _initialPosition = const LatLng(33.2464308, 126.4118265);
 
+  List<Marker> _markers = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +62,8 @@ class _MapScreenState extends State<MapScreen> {
                   myLocationEnabled: true,
                   rotateGesturesEnabled: false,
                   tiltGesturesEnabled: false,
+                  markers: Set.from(_markers),
+                  onTap: _setMarker,
                 ),
               ),
               _mapHeader(),
@@ -69,6 +73,21 @@ class _MapScreenState extends State<MapScreen> {
       ),
       bottomNavigationBar: BottomNavbar(context: context),
     );
+  }
+
+  void _setMarker(LatLng tapPoint) async {
+    setState(() {
+      if (_markers.isNotEmpty) {
+        _markers.clear();
+        return;
+      }
+      _markers.clear();
+      _markers.add(Marker(
+        markerId: MarkerId(tapPoint.toString()),
+        position: tapPoint,
+      ));
+    });
+    
   }
 
   Widget _mapHeader() {
