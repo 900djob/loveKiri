@@ -3,7 +3,7 @@ import 'package:lovekiri_client/models/s_user.dart';
 
 class ApiUser extends Api {
   static Future<SResponse<SUser>> postUser({
-    required String type,
+    required String loginType,
     required String name,
     required String email,
     required String ssoId,
@@ -13,7 +13,7 @@ class ApiUser extends Api {
     bool isVerboseLog = false,
   }) {
     Map<String, dynamic> params = {};
-    params["type"] = type;
+    params["loginType"] = loginType;
     params["name"] = name;
     params["email"] = email;
     params["ssoId"] = ssoId;
@@ -28,4 +28,5 @@ class ApiUser extends Api {
       isVerboseLog: isVerboseLog,
     );
   }
+
 }

@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (userData != null) {
       final response = await ApiUser.postUser(
-        type: userData.loginType,
+        loginType: userData.loginType,
         name: userData.name,
         email: userData.email,
         ssoId: userData.ssoId,
