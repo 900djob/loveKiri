@@ -37,6 +37,7 @@
 			"type": "flutter",
 			"command": "flutter",
 			"args": [
+				"packages",
 				"pub",
 				"run",
 				"build_runner",
