@@ -13,6 +13,9 @@ class Travelog {
   late String adress;
 
   @JsonKey(required: true, disallowNullValue: true)
+  late double dateTime;
+
+  @JsonKey(required: true, disallowNullValue: true)
   late double lat;
 
   @JsonKey(required: true, disallowNullValue: true)
@@ -29,14 +32,3 @@ class Travelog {
   factory Travelog.fromJson(Map<String, dynamic> json) => _$TravelogFromJson(json);
   Map<String, dynamic> toJson() => _$TravelogToJson(this);
 }
-
-//id
-//dayDate
-//locationName
-//adress
-//lat
-//lng
-//description
-//rate
-//imgUrl
-

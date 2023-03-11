@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 
 const travelogScheme = mongoose.Schema({
-  logId: {
-    type : Number,
-    unique: true,
-    index: true
-  },
-  locationName: {
+  location_name: {
     type: String,
     trim: false,
     maxLength: 120,
@@ -15,6 +10,10 @@ const travelogScheme = mongoose.Schema({
   adress: {
     type: String,
     trim: false,
+    required: true,
+  },
+  date_time: {
+    type: Number,
     required: true,
   },
   lat: {
@@ -33,7 +32,7 @@ const travelogScheme = mongoose.Schema({
     type: Number,
     required: true,
   },
-  imgUrl: {
+  img: {
     type: String
   }
 });
