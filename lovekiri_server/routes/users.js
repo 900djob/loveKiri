@@ -5,7 +5,7 @@ const { User } = require("../model/User");
 
 router.post("/auth", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
-    if (!user) {
+    if (user == null) {
       const newUser = new User(req.body);
 
       newUser.save((err, user) => {

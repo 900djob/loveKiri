@@ -24,7 +24,7 @@ class ApiUser {
         '$apiServer/users/auth',
         data: params,
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return SUser.fromJson(response.data['user']);
       }
     } catch (e) {
