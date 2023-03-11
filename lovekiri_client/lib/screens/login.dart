@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
         name: userData.name,
         email: userData.email,
         ssoId: userData.ssoId,
+        image: userData.imgUrl,
       );
       if (response is SUser) {
         appState.prefs.setBool('isRegistered', true);
