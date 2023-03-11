@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lovekiri_client/screens/home.dart';
+import 'package:lovekiri_client/screens/travelog_detail.dart';
 
 class TravelogTile extends StatelessWidget {
   const TravelogTile({
@@ -20,7 +23,12 @@ class TravelogTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.to(
+          () => const TravelogDetailScreen(),
+          transition: Transition.noTransition,
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         child: Container(

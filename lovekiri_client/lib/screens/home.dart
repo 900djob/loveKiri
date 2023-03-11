@@ -25,18 +25,18 @@ class _HomeScreenState extends State<HomeScreen> {
         bottom: false,
         child: Column(
           children: [
-            _mapHeader(),
+            _homeHeader(),
             const SizedBox(height: 32),
             Expanded(
               child: ListView.builder(
                 primary: true,
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
-                itemCount: 3,
+                itemCount: 2,
                 itemBuilder: (context, index) => TravelogTile(
                   date: DateTime.now(),
-                  title: '중문 DT 스타벅스',
-                  locationName: '서귀포시 중문로',
+                  title: 'Test Location',
+                  locationName: '대구시 북구 대현남로 28',
                   type: '카페',
                   rate: 3,
                 ),
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _mapHeader() {
+  Widget _homeHeader() {
     return Padding(
       padding: const EdgeInsets.only(top: 64, left: 24, right: 24),
       child: Row(
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(width: 24),
           Text(
-            tr('home.travel'),
+            tr('home.홈'),
             style: const TextStyle(
               fontSize: 28,
             ),
