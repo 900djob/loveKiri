@@ -89,7 +89,7 @@ class _TravelogDetailScreenState extends State<TravelogDetailScreen> {
               const SizedBox(height: 32),
               _getDateTime(),
               const SizedBox(height: 12),
-              _getLocation(),
+              _getLocation(testTravelog),
               const SizedBox(height: 32),
               getInfo(testTravelog),
             ],
@@ -160,55 +160,69 @@ class _TravelogDetailScreenState extends State<TravelogDetailScreen> {
     );
   }
 
-  Widget _getLocation() {
+  Widget _getLocation(TestLog info) {
     final screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      width: screenSize.width,
-      height: screenSize.width * (196.0 / 375.0),
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            spreadRadius: 2,
-            blurRadius: 8,
+    return Column(
+      children: [
+        Container(
+          width: screenSize.width,
+          height: screenSize.width * (196.0 / 375.0),
+          decoration: const BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                spreadRadius: 2,
+                blurRadius: 8,
+              ),
+            ],
           ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition: CameraPosition(
-            target: _initialPosition,
-            zoom: 17,
-          ),
-          onMapCreated: (controller) {
-            setState(() {
-              mapController = controller;
-              mapController?.animateCamera(
-                CameraUpdate.newCameraPosition(
-                  CameraPosition(
-                    target: LatLng(
-                      _initialPosition.latitude,
-                      _initialPosition.longitude,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: GoogleMap(
+              mapType: MapType.normal,
+              initialCameraPosition: CameraPosition(
+                target: _initialPosition,
+                zoom: 17,
+              ),
+              onMapCreated: (controller) {
+                setState(() {
+                  mapController = controller;
+                  mapController?.animateCamera(
+                    CameraUpdate.newCameraPosition(
+                      CameraPosition(
+                        target: LatLng(
+                          _initialPosition.latitude,
+                          _initialPosition.longitude,
+                        ),
+                        zoom: 17,
+                      ),
                     ),
-                    zoom: 17,
-                  ),
-                ),
-              );
-            });
-          },
-          markers: Set<Marker>.of(mapMarkers),
-          myLocationButtonEnabled: false,
-          myLocationEnabled: false,
-          rotateGesturesEnabled: false,
-          scrollGesturesEnabled: false,
-          zoomControlsEnabled: false,
-          zoomGesturesEnabled: false,
-          tiltGesturesEnabled: false,
+                  );
+                });
+              },
+              markers: Set<Marker>.of(mapMarkers),
+              myLocationButtonEnabled: false,
+              myLocationEnabled: false,
+              rotateGesturesEnabled: false,
+              scrollGesturesEnabled: false,
+              zoomControlsEnabled: false,
+              zoomGesturesEnabled: false,
+              tiltGesturesEnabled: false,
+            ),
+          ),
         ),
-      ),
+        const SizedBox(height: 8),
+        Text(
+          info.adress,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600
+          ),
+        )
+      ],
     );
   }
 
@@ -220,15 +234,42 @@ class _TravelogDetailScreenState extends State<TravelogDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              info.locationName,
-              style: const TextStyle(
-                fontSize: 22,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    info.locationName,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: SizedBox(
+                    height: 24,
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: info.rate,
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
+                      itemBuilder: (ctx, idx) => const Icon(
+                        Icons.star,
+                        size: 24,
+                        color: Colors.amber,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 18),
             Text(
               info.description,
+              style: const TextStyle(
+                fontSize: 18,
+              ),
             ),
           ],
         ),
