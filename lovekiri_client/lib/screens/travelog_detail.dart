@@ -264,11 +264,11 @@ class _TravelogDetailScreenState extends State<TravelogDetailScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 22),
             Text(
               info.description,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
           ],
