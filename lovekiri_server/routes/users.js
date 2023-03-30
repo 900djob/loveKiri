@@ -19,4 +19,11 @@ router.post("/auth", (req, res) => {
   });
 });
 
+router.get("/user", (req, res) => {
+  User.findOne({ ssoId: req.body.ssoId }, (err, user) => {
+    if (err) return res.json({ err });
+    return res.status(200).json({ user });
+  });
+});
+
 module.exports = router;
