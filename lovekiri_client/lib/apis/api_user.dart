@@ -19,6 +19,7 @@ class ApiUser {
     params["email"] = email;
     params["sso_id"] = ssoId;
     if (image != null) params["image"] = image;
+    
     try {
       Response response = await dio.post(
         '$apiServer/users/auth',
@@ -29,6 +30,21 @@ class ApiUser {
       }
     } catch (e) {
       debugPrint('err: $e');
+    }
+  }
+
+  static getUser({
+    required String ssoId,
+  }) async {
+    try {
+      Response response = await dio.get(
+        '$apiServer/users/user',
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return SUser.fromJson(response.data['user']);
+      }
+    } catch (e) {
+      debugPrint('err : $e');
     }
   }
 }
