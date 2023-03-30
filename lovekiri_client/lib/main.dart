@@ -46,14 +46,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        title: 'lovekiri',
-        theme: ThemeData(
-          textTheme: GoogleFonts.breeSerifTextTheme(),
-          primarySwatch: Colors.blue,
-        ),
-        home: LoginScreen());
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      title: 'lovekiri',
+      theme: ThemeData(
+        textTheme: GoogleFonts.breeSerifTextTheme(),
+        primarySwatch: Colors.blue,
+      ),
+      home: const LoginScreen(),
+    );
   }
 }

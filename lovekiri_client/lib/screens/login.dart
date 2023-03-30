@@ -38,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response is SUser) {
         appState.prefs.setBool('isRegistered', true);
         appState.prefs.setString('accessToken', userData.ssoId);
+
         Get.offAll(
           () => const HomeScreen(),
           transition: Transition.noTransition,
