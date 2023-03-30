@@ -17,7 +17,7 @@ class SUser {
   late String email;
 
   @JsonKey(defaultValue: [])
-  late List<Travelog> travelog;
+  late List<Travelog> travelogs;
 
   factory SUser.fromJson(Map<String, dynamic> json) => _$SUserFromJson(json);
   Map<String, dynamic> toJson() => _$SUserToJson(this);
