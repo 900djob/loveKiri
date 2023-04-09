@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lovekiri_client/screens/controllers/home_c.dart';
+import 'package:lovekiri_client/screens/controllers/make_travelog_c.dart';
+import 'package:lovekiri_client/screens/make_travelog.dart';
 import 'package:lovekiri_client/screens/profile.dart';
 import 'package:lovekiri_client/widgets/bottom_navbar.dart';
 import 'package:lovekiri_client/widgets/travel_log_tile.dart';
@@ -39,7 +41,7 @@ class HomeScreen extends GetView<HomeController> {
                   primary: true,
                   shrinkWrap: true,
                   padding: EdgeInsets.zero,
-                  itemCount: 2,
+                  itemCount: 5,
                   itemBuilder: (context, index) => TravelogTile(
                     date: DateTime.now(),
                     title: 'Test Location',
@@ -101,6 +103,17 @@ class HomeScreen extends GetView<HomeController> {
             style: const TextStyle(
               fontSize: 28,
             ),
+          ),
+          const Spacer(),
+          GestureDetector(
+            onTap: () => Get.to(
+              () => MakeTravelog(),
+              binding: BindingsBuilder(() {
+                Get.put(MakeTravelogController());
+              }),
+              transition: Transition.noTransition,
+            ),
+            child: SvgPicture.asset("assets/svgs/add_btn.svg", color: Colors.black, width: 22),
           ),
         ],
       ),
