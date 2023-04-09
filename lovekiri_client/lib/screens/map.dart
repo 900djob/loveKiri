@@ -17,8 +17,6 @@ class _MapScreenState extends State<MapScreen> {
   final _currentLocation = Get.find<AppState>().currentLocation;
 
   GoogleMapController? mapController;
-  final LatLng _initialPosition = const LatLng(33.2464308, 126.4118265);
-
   List<Marker> _markers = [];
 
   @override
@@ -39,8 +37,8 @@ class _MapScreenState extends State<MapScreen> {
                   mapType: MapType.normal,
                   padding: const EdgeInsets.fromLTRB(24, 0, 24, 100),
                   initialCameraPosition: CameraPosition(
-                    target: _initialPosition,
-                    zoom: 17,
+                    target: _currentLocation,
+                    zoom: 14,
                   ),
                   onMapCreated: (controller) {
                     setState(() {
@@ -52,7 +50,7 @@ class _MapScreenState extends State<MapScreen> {
                               _currentLocation.latitude,
                               _currentLocation.longitude,
                             ),
-                            zoom: 17,
+                            zoom: 14,
                           ),
                         ),
                       );
@@ -63,7 +61,7 @@ class _MapScreenState extends State<MapScreen> {
                   rotateGesturesEnabled: false,
                   tiltGesturesEnabled: false,
                   markers: Set.from(_markers),
-                  onTap: _setMarker,
+                  // onTap: _setMarker,
                 ),
               ),
               _mapHeader(),
@@ -73,21 +71,6 @@ class _MapScreenState extends State<MapScreen> {
       ),
       bottomNavigationBar: BottomNavbar(context: context),
     );
-  }
-
-  void _setMarker(LatLng tapPoint) async {
-    setState(() {
-      if (_markers.isNotEmpty) {
-        _markers.clear();
-        return;
-      }
-      _markers.clear();
-      _markers.add(Marker(
-        markerId: MarkerId(tapPoint.toString()),
-        position: tapPoint,
-      ));
-    });
-    
   }
 
   Widget _mapHeader() {
@@ -167,5 +150,19 @@ class _MapScreenState extends State<MapScreen> {
         ],
       ),
     );
+  }
+
+  void _setMarker(LatLng tapPoint) async {
+    setState(() {
+      if (_markers.isNotEmpty) {
+        _markers.clear();
+        return;
+      }
+      _markers.clear();
+      _markers.add(Marker(
+        markerId: MarkerId(tapPoint.toString()),
+        position: tapPoint,
+      ));
+    });
   }
 }
