@@ -27,15 +27,6 @@ class HomeScreen extends GetView<HomeController> {
             children: [
               _homeHeader(),
               const SizedBox(height: 32),
-              // const SizedBox(height: 32),
-              // Text(
-              //   tr('home.빈리스트1'),
-              //   style: const TextStyle(fontSize: 22),
-              // ),
-              // Text(
-              //   tr('home.빈리스트2'),
-              //   style: const TextStyle(fontSize: 22),
-              // ),
               Expanded(
                 child: ListView.builder(
                   primary: true,

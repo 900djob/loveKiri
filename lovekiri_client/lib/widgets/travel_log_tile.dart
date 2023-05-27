@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lovekiri_client/screens/home.dart';
 import 'package:lovekiri_client/screens/travelog_detail.dart';
 
 class TravelogTile extends StatelessWidget {
