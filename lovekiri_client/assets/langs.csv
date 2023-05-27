@@ -6,3 +6,16 @@ home.빈리스트2,Add Your Travelog,Add Your Travelog
 profile.프로필,Profile,Profile
 travelog.트레벨로그,Travelog,Travelog
 travelog.메이크,Add Travelog, Add Travelog
+travelog.장소,Location,Location
+travelog.장소.hint,Search Location,장소를 검색하세요
+travelog.제목,Title,Title
+travelog.제목.hint,Enter Title,제목을 입력하세요
+travelog.날짜,Date,Date
+travelog.날짜.hint,Select Date,날짜를 선택하세요
+travelog.평점,Rate,Rate
+travelog.평점.hint,Select Rate,평점을 선택하세요
+travelog.설명,Description,Description
+travelog.설명.hint,Enter Description,내용을 입력하세요
+trvelog.등록,Add Location,Add Location
+calendar.등록,Select Date,Select Date
+calendar.선택완료,Confirm,Confirm

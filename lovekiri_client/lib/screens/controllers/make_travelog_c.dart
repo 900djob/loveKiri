@@ -12,4 +12,13 @@ class MakeTravelogController extends GetxController {
   void onInit() {
     super.onInit();
   }
+
+  LatLng? location;
+  String? title;
+  DateTime? date;
+  String? dateToString;
+  int? rate;
+  String? description;
+
+  Future<void> addLocation() async {}
 }
