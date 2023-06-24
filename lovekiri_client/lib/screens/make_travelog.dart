@@ -7,6 +7,7 @@ import 'package:lovekiri_client/screens/controllers/make_travelog_c.dart';
 import 'package:lovekiri_client/screens/profile.dart';
 import 'package:lovekiri_client/state/app_state.dart';
 import 'package:lovekiri_client/widgets/calendar_bottomsheet.dart';
+import 'package:lovekiri_client/widgets/select_bottomsheet.dart';
 
 class MakeTravelog extends StatelessWidget {
   MakeTravelog({super.key});
@@ -37,6 +38,8 @@ class MakeTravelog extends StatelessWidget {
                       child: Column(
                         children: [
                           _getLocation(),
+                          const SizedBox(height: 24),
+                          _getCategory(),
                           const SizedBox(height: 24),
                           _getTitle(),
                           const SizedBox(height: 24),
@@ -120,7 +123,7 @@ class MakeTravelog extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -160,21 +163,98 @@ class MakeTravelog extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Container(
-            width: double.infinity,
-            height: 220,
-            decoration: const BoxDecoration(),
-            child: GoogleMap(
-              mapType: MapType.normal,
-              initialCameraPosition: CameraPosition(
-                target: c.currentLocation,
-                zoom: 14,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: SizedBox(
+              width: double.infinity,
+              height: 220,
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: CameraPosition(
+                  target: c.currentLocation,
+                  zoom: 14,
+                ),
+                onMapCreated: (controller) {},
+                myLocationButtonEnabled: false,
+                myLocationEnabled: true,
+                rotateGesturesEnabled: false,
+                tiltGesturesEnabled: false,
               ),
-              onMapCreated: (controller) {},
-              myLocationButtonEnabled: false,
-              myLocationEnabled: true,
-              rotateGesturesEnabled: false,
-              tiltGesturesEnabled: false,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _getCategory() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            tr('travelog.카테고리'),
+            style: const TextStyle(
+              fontSize: 22,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8.0),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  spreadRadius: 2,
+                  blurRadius: 24,
+                ),
+              ],
+            ),
+            child: TextFormField(
+              decoration: InputDecoration(
+                hintText: tr('travelog.카테고리.hint'),
+                hintStyle: const TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFFC5C5C7),
+                  fontWeight: FontWeight.normal,
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                enabledBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.zero),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.zero),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+              readOnly: true,
+              maxLines: 1,
+              controller: TextEditingController(text: c.category ?? ""),
+              onTap: () async {
+                final category = await Get.bottomSheet<String>(
+                  const SelectBottomSheet(
+                    title: 'Category',
+                    data: [
+                      'aaaa',
+                      'bbbb',
+                      'cccc',
+                      'dddd',
+                      'eeee',
+                      'ffff',
+                      'gggg',
+                      'hhhh',
+                      'iiii'
+                    ],
+                  ),
+                );
+                if (category != null) {
+                  c.category = category;
+                  c.update();
+                }
+              },
             ),
           ),
         ],
@@ -194,7 +274,7 @@ class MakeTravelog extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -249,7 +329,7 @@ class MakeTravelog extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -311,7 +391,7 @@ class MakeTravelog extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -364,7 +444,7 @@ class MakeTravelog extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -436,15 +516,5 @@ class MakeTravelog extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _datePicker() async {
-    final selectedDate = await Get.bottomSheet<DateTime>(
-      const CalendarBottomSheet(),
-    );
-    if (selectedDate != null) {
-      c.date = selectedDate;
-      c.update();
-    }
   }
 }

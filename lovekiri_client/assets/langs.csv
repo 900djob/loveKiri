@@ -8,6 +8,8 @@ travelog.트레벨로그,Travelog,Travelog
 travelog.메이크,Add Travelog, Add Travelog
 travelog.장소,Location,Location
 travelog.장소.hint,Search Location,장소를 검색하세요
+travelog.카테고리,Category,Category
+travelog.카테고리.hint,Select Category,카테고리를 선택하세요
 travelog.제목,Title,Title
 travelog.제목.hint,Enter Title,제목을 입력하세요
 travelog.날짜,Date,Date
