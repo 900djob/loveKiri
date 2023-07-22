@@ -41,8 +41,6 @@ class MakeTravelog extends StatelessWidget {
                           const SizedBox(height: 24),
                           _getCategory(),
                           const SizedBox(height: 24),
-                          _getTitle(),
-                          const SizedBox(height: 24),
                           _getDate(),
                           const SizedBox(height: 24),
                           _getRate(),
@@ -231,8 +229,7 @@ class MakeTravelog extends StatelessWidget {
                 ),
               ),
               readOnly: true,
-              maxLines: 1,
-              controller: TextEditingController(text: c.category ?? ""),
+              controller: TextEditingController(text: c.category),
               onTap: () async {
                 final category = await Get.bottomSheet<String>(
                   const SelectBottomSheet(
@@ -262,60 +259,60 @@ class MakeTravelog extends StatelessWidget {
     );
   }
 
-  Widget _getTitle() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            tr('travelog.제목'),
-            style: const TextStyle(
-              fontSize: 22,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8.0),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  spreadRadius: 2,
-                  blurRadius: 24,
-                ),
-              ],
-            ),
-            child: TextFormField(
-              decoration: InputDecoration(
-                hintText: tr('travelog.제목.hint'),
-                hintStyle: const TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFFC5C5C7),
-                  fontWeight: FontWeight.normal,
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                enabledBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.zero),
-                  borderSide: BorderSide.none,
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.zero),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              maxLines: 1,
-              onChanged: (v) {
-                c.title = v;
-                c.update();
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _getTitle() {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 24),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           tr('travelog.제목'),
+  //           style: const TextStyle(
+  //             fontSize: 22,
+  //           ),
+  //         ),
+  //         const SizedBox(height: 8),
+  //         Container(
+  //           decoration: BoxDecoration(
+  //             color: Colors.white,
+  //             borderRadius: BorderRadius.circular(8.0),
+  //             boxShadow: const [
+  //               BoxShadow(
+  //                 color: Colors.black12,
+  //                 spreadRadius: 2,
+  //                 blurRadius: 24,
+  //               ),
+  //             ],
+  //           ),
+  //           child: TextFormField(
+  //             decoration: InputDecoration(
+  //               hintText: tr('travelog.제목.hint'),
+  //               hintStyle: const TextStyle(
+  //                 fontSize: 16,
+  //                 color: Color(0xFFC5C5C7),
+  //                 fontWeight: FontWeight.normal,
+  //               ),
+  //               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+  //               enabledBorder: const OutlineInputBorder(
+  //                 borderRadius: BorderRadius.all(Radius.zero),
+  //                 borderSide: BorderSide.none,
+  //               ),
+  //               focusedBorder: const OutlineInputBorder(
+  //                 borderRadius: BorderRadius.all(Radius.zero),
+  //                 borderSide: BorderSide.none,
+  //               ),
+  //             ),
+  //             maxLines: 1,
+  //             onChanged: (v) {
+  //               c.title = v;
+  //               c.update();
+  //             },
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _getDate() {
     return Padding(

@@ -25,7 +25,7 @@ class TravelogTile extends StatelessWidget {
       onTap: () {
         Get.to(
           () => const TravelogDetailScreen(),
-          transition: Transition.noTransition,
+          // transition: Transition.noTransition,
         );
       },
       child: Padding(

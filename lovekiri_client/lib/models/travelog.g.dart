@@ -11,41 +11,45 @@ Travelog _$TravelogFromJson(Map<String, dynamic> json) {
     json,
     requiredKeys: const [
       'location_name',
-      'adress',
-      'date_time',
+      'address',
       'lat',
       'lng',
-      'description',
-      'rate'
+      'category',
+      'date_time',
+      'rate',
+      'description'
     ],
     disallowNullValues: const [
       'location_name',
-      'adress',
-      'date_time',
+      'address',
       'lat',
       'lng',
-      'description',
-      'rate'
+      'category',
+      'date_time',
+      'rate',
+      'description'
     ],
   );
   return Travelog()
     ..locationName = json['location_name'] as String
-    ..adress = json['adress'] as String
-    ..dateTime = (json['date_time'] as num).toDouble()
+    ..address = json['address'] as String
     ..lat = (json['lat'] as num).toDouble()
     ..lng = (json['lng'] as num).toDouble()
-    ..description = json['description'] as String
+    ..category = json['category'] as String
+    ..dateTime = (json['date_time'] as num).toDouble()
     ..rate = json['rate'] as int
+    ..description = json['description'] as String
     ..imgUrl = json['img_url'] as String?;
 }
 
 Map<String, dynamic> _$TravelogToJson(Travelog instance) => <String, dynamic>{
       'location_name': instance.locationName,
-      'adress': instance.adress,
-      'date_time': instance.dateTime,
+      'address': instance.address,
       'lat': instance.lat,
       'lng': instance.lng,
-      'description': instance.description,
+      'category': instance.category,
+      'date_time': instance.dateTime,
       'rate': instance.rate,
+      'description': instance.description,
       'img_url': instance.imgUrl,
     };

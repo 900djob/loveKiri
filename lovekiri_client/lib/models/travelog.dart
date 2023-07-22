@@ -10,22 +10,25 @@ class Travelog {
   late String locationName;
 
   @JsonKey(required: true, disallowNullValue: true)
-  late String adress;
-
-  @JsonKey(required: true, disallowNullValue: true)
-  late double dateTime;
+  late String address;
 
   @JsonKey(required: true, disallowNullValue: true)
   late double lat;
 
   @JsonKey(required: true, disallowNullValue: true)
   late double lng;
+  
+  @JsonKey(required: true, disallowNullValue: true)
+  late String category;
 
   @JsonKey(required: true, disallowNullValue: true)
-  late String description;
+  late double dateTime;
 
   @JsonKey(required: true, disallowNullValue: true)
   late int rate;
+  
+  @JsonKey(required: true, disallowNullValue: true)
+  late String description;
 
   String? imgUrl;
 

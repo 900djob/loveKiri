@@ -62,7 +62,7 @@ class HomeScreen extends GetView<HomeController> {
             onTap: () {
               Get.to(
                 () => const ProfileScreen(),
-                transition: Transition.noTransition,
+                // transition: Transition.noTransition,
               );
             },
             child: Container(
@@ -102,7 +102,7 @@ class HomeScreen extends GetView<HomeController> {
               binding: BindingsBuilder(() {
                 Get.put(MakeTravelogController());
               }),
-              transition: Transition.noTransition,
+              // transition: Transition.noTransition,
             ),
             child: SvgPicture.asset("assets/svgs/add_btn.svg", color: Colors.black, width: 22),
           ),

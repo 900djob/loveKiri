@@ -7,13 +7,9 @@ const travelogScheme = mongoose.Schema({
     maxLength: 120,
     required: true
   },
-  adress: {
+  address: {
     type: String,
     trim: false,
-    required: true,
-  },
-  date_time: {
-    type: Number,
     required: true,
   },
   lat: {
@@ -24,12 +20,20 @@ const travelogScheme = mongoose.Schema({
     type: Number,
     required: true
   },
-  description: {
+  category: {
     type: String,
+    required: true,
+  },
+  date_time: {
+    type: Number,
     required: true,
   },
   rate: {
     type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
     required: true,
   },
   img: {
